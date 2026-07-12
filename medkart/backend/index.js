@@ -36,7 +36,10 @@ mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/medkart")
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://med-kart-wine.vercel.app"
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
