@@ -21,7 +21,7 @@ const app = express();
 // Load initial medicines from correct path
 let initialMedicines = [];
 try {
-  initialMedicines = require(path.join(__dirname, "../src/components/data/drugs.json"));
+  initialMedicines = require(path.join(__dirname, "data/drugs.json"));
 } catch (err) {
   console.warn("Warning: Could not load drugs.json. Medicine seeding may fail.", err.message);
 }
