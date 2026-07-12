@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
-import MEDICINES from "../components/data/drugs.json";
+
 
 const CATEGORIES = [
   "All", "Pain Relief", "Antibiotic", "Allergy", "Digestive",
