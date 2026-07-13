@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 
 const CATEGORIES = [
@@ -22,13 +23,13 @@ export default function Medicine() {
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/medicines");
+        const response = await fetch(`${API_URL}/medicines`);
         if (!response.ok) throw new Error("Failed to fetch medicines");
         const data = await response.json();
         setMedicines(data);
       } catch (error) {
         console.error("Error loading medicines:", error);
-        setMedicines(MEDICINES);
+       setMedicines([]);
       } finally {
         setLoading(false);
       }
@@ -40,7 +41,7 @@ export default function Medicine() {
     setAddingId(medicine.id); // show Adding...
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/cart", {
+      const response = await fetch(`${API_URL}/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +85,7 @@ export default function Medicine() {
     setEditError("");
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/seller/medicines/${medicineId}`, {
+      const response = await fetch(`${API_URL}/seller/medicines/${medicineId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +107,7 @@ export default function Medicine() {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/seller/medicines/${medicineId}`, {
+      const response = await fetch(`${API_URL}/seller/medicines/${medicineId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
