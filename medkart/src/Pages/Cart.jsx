@@ -14,7 +14,7 @@ export default function Cart() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/cart", {
+      const response = await fetch("https://medkart-backend.onrender.com/api/cart", {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -36,7 +36,7 @@ export default function Cart() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/cart/${id}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/cart/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -70,14 +70,14 @@ export default function Cart() {
       const token = localStorage.getItem("token");
       
       // Delete current item
-      await fetch(`http://localhost:5000/api/cart/${id}`, { 
+      await fetch(`https://medkart-backend.onrender.com/api/cart/${id}`, { 
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
       
       // Re-add with new quantity
       for (let i = 0; i < newQuantity; i++) {
-        await fetch("http://localhost:5000/api/cart", {
+        await fetch("https://medkart-backend.onrender.com/api/cart", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",

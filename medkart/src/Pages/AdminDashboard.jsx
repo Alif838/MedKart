@@ -84,7 +84,7 @@ export default function AdminDashboard() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/admin/users/${userId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/seller/medicines/${medicineId}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/seller/medicines/${medicineId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${editingUser}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/admin/users/${editingUser}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export default function AdminDashboard() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/seller/medicines/${editingMedicine}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/seller/medicines/${editingMedicine}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -190,7 +190,7 @@ export default function AdminDashboard() {
   const fetchSettings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/admin/settings', {
+      const response = await fetch('https://medkart-backend.onrender.com/api/admin/settings', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -209,7 +209,7 @@ export default function AdminDashboard() {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/admin/settings', {
+      const response = await fetch('https://medkart-backend.onrender.com/api/admin/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

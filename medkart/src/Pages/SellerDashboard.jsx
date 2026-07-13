@@ -39,7 +39,7 @@ export default function SellerDashboard() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/seller/medicines", {
+      const response = await fetch("https://medkart-backend.onrender.com/api/seller/medicines", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await parseResponse(response);
@@ -85,7 +85,7 @@ export default function SellerDashboard() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/seller/medicines", {
+      const response = await fetch("https://medkart-backend.onrender.com/api/seller/medicines", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export default function SellerDashboard() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/seller/medicines/${medicineId}`, {
+      const response = await fetch(`https://medkart-backend.onrender.com/api/seller/medicines/${medicineId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
