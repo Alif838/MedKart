@@ -336,34 +336,45 @@ app.delete("/api/seller/medicines/:id", requireAuth, async (req, res) => {
 app.post("/api/cart", requireAuth, async (req, res) => {
   try {
     const item = req.body;
+
     if (!item || !item.id) {
       return res.status(400).json({ msg: "Invalid item" });
     }
 
-    let existing = await CartItem.findOne({ id: item.id, userId: req.user.id });
+    let existing = await CartItem.findOne({
+      id: item.id,
+      userId: req.user.id,
+    });
+
     if (existing) {
       existing.quantity += 1;
       await existing.save();
     } else {
-      const newItem = new CartItem({ ...item, userId: req.user.id });
+      const newItem = new CartItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        category: item.category,
+        usage: item.usage,
+        image: item.image,
+        quantity: 1,
+        userId: req.user.id,
+      });
+
       await newItem.save();
     }
 
-    const cart = await CartItem.find({ userId: req.user.id });
+    const cart = await CartItem.find({
+      userId: req.user.id,
+    });
+
     res.json(cart);
+
   } catch (error) {
     console.error("Add to cart error:", error);
-    res.status(500).json({ msg: "Failed to add item to cart" });
-  }
-});
-
-app.get("/api/cart", requireAuth, async (req, res) => {
-  try {
-    const cart = await CartItem.find({ userId: req.user.id });
-    res.json(cart);
-  } catch (error) {
-    console.error("Get cart error:", error);
-    res.status(500).json({ msg: "Failed to fetch cart" });
+    res.status(500).json({
+      msg: "Failed to add item to cart",
+    });
   }
 });
 
