@@ -377,6 +377,22 @@ app.post("/api/cart", requireAuth, async (req, res) => {
     });
   }
 });
+app.get("/api/cart", requireAuth, async (req, res) => {
+  try {
+    const cart = await CartItem.find({
+      userId: req.user.id,
+    });
+
+    res.json(cart);
+
+  } catch (error) {
+    console.error("Get cart error:", error);
+
+    res.status(500).json({
+      msg: "Failed to fetch cart",
+    });
+  }
+});
 
 app.delete("/api/cart/:id", requireAuth, async (req, res) => {
   try {
